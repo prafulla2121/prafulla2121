@@ -13,7 +13,6 @@ Welcome to my digital workshop—where code, creativity, and curiosity collide!
 
 ### 💻 Languages  
 - **Primary**: java,c,c++,js 
-- **Experimenting**: [List languages you're learning or exploring here]  
 
 ### 🔥 Frameworks & Tools  
 - Web: [React, Angular, Vue.js, etc.]  
