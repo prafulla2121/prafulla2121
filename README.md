@@ -25,7 +25,7 @@ Welcome to my digital workshop—where code, creativity, and curiosity collide!
 
 ## 🌍 Let's Connect!  
 
-- 🌐 **Portfolio**: [Link to your personal website, if available]  
+- 🌐 **Portfolio**: [personal website](https://prafullapurohit.netlify.app/)  
 - 💼 **LinkedIn**: [Linked in](www.linkedin.com/in/prafulla-purohit-79aa5623b)  
 - 🐦 **Twitter**: [@myTwitterHandle](https://x.com/21Prafulla)  
 - 📧 **Email**: [prafulpurohit917@example.com](mailto:prafulpurohit917@gmail.com)  
