@@ -15,13 +15,13 @@ Welcome to my digital workshop—where code, creativity, and curiosity collide!
 - **Primary**: java,c,c++,js 
 
 ### 🔥 Frameworks & Tools  
-- Web: [React, Angular, Vue.js, etc.]  
-- Backend: [Node.js, Django, Spring Boot, etc.]  
-- Database: [PostgreSQL, MongoDB, MySQL, etc.]  
-- DevOps: [Docker, Kubernetes, CI/CD tools]  
+- Web: [html,css,js]  
+- Backend: [Node.js,]  
+- Database: [MongoDB, MySQL, etc.]   
 
 ### 🛠️ Others  
-- VIDEO EDITING SKILLS
+- VIDEO EDITING 
+- CONTENT CREATION
 
 ## 🌍 Let's Connect!  
 
