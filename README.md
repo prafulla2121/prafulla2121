@@ -20,7 +20,7 @@
 
 ### 👋 About me
 
-I'm an **AI/ML Engineer Intern at Satva Solutions** (Ahmedabad) and a final-year **B.Tech IT** student at Marwadi University (CGPA 8.38), based in Morbi, Gujarat.
+I'm an **AI/ML Developer at Satva Solutions** (Ahmedabad) and a final-year **B.Tech IT** student at Marwadi University (CGPA 8.38), based in Morbi, Gujarat.
 
 I connect AI agents to real business systems. Most of my work is **Model Context Protocol (MCP) servers** that give agents safe access to accounting and e-commerce APIs, plus **RAG pipelines** that answer questions from documents.
 
@@ -94,7 +94,7 @@ I connect AI agents to real business systems. Most of my work is **Model Context
 
 | Role | Company | When |
 | --- | --- | --- |
-| AI/ML Engineer Intern | Satva Solutions, Ahmedabad | Jan 2026 – present |
+| AI/ML Developer | Satva Solutions, Ahmedabad | Jan 2026 – present |
 | AI/ML Intern | TSS Ltd, Rajkot | Jan 2025 – Jun 2025 |
 
 ### 📈 GitHub streak
