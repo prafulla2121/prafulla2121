@@ -94,7 +94,8 @@ I connect AI agents to real business systems. Most of my work is **Model Context
 
 | Role | Company | When |
 | --- | --- | --- |
-| AI/ML Developer | Satva Solutions, Ahmedabad | Jan 2026 – present |
+| AI/ML Developer | Satva Solutions, Ahmedabad | Jun 2026 – present |
+| AI/ML Engineer Intern | Satva Solutions, Ahmedabad | Jan 2026 – Jun 2026 |
 | AI/ML Intern | TSS Ltd, Rajkot | Jan 2025 – Jun 2025 |
 
 ### 📈 GitHub streak
