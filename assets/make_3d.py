@@ -69,7 +69,12 @@ def frame(W, H):
             f'<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="18" fill="none" stroke="#fff" stroke-opacity=".08"/>']
 
 
-def svg(W, H, body):
+def svg(W, H, body, title=None, sub=""):
+    """A dark panel; with a title, the heading sits inside the panel so heading and content read as one block."""
+    if title:
+        body = (f'<text x="32" y="50" style="font:700 26px {SANS};fill:{INK};letter-spacing:-.4px">{escape(title)}</text>'
+                f'<text x="{W - 32}" y="49" text-anchor="end" class="body">{escape(sub)}</text><g transform="translate(0,52)">{body}</g>')
+        H += 52
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">{defs()}{"".join(frame(W, H))}{body}</svg>'
 
 
@@ -108,7 +113,7 @@ def workbench():
             o.append(f'<line x1="660" y1="{y + 26}" x2="660" y2="{y + 34}" stroke="{MUTED}" stroke-opacity=".5" stroke-width="2"/>')
     o.append(f'<text x="756" y="{72 + 2 * 34 + 17}" class="body" style="font-size:12px">a human approves</text>'
              f'<text x="756" y="{72 + 2 * 34 + 33}" class="body" style="font-size:12px">the plan first</text>')
-    return svg(900, 300, "".join(o))
+    return svg(900, 300, "".join(o), "How I work", "Claude Code is my main workbench")
 
 
 OSS_ROWS = [("merged", OSS, "beetbox/beets #7139", "tests: album tracks are not singleton import duplicates"),
@@ -123,7 +128,7 @@ def oss():
                  f'<text x="71" y="{y + 17}" text-anchor="middle" class="tag" fill="{c}">{state}</text>'
                  f'<text x="128" y="{y + 18}" style="font:600 15px {MONO};fill:{INK}">{escape(where)}</text>'
                  f'<text x="868" y="{y + 18}" text-anchor="end" class="body" style="font-size:14px">{escape(what)}</text>')
-    return svg(900, 140, "".join(o))
+    return svg(900, 140, "".join(o), "Open source", "upstream work")
 
 
 def label(iso, x, y, z, text, color, dx=0, dy=-10, anchor="middle"):
@@ -225,9 +230,8 @@ def card(title, lines, chips, accent, heights):
 
 out = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).parent)
 files = {out / "assets" / "scene.svg": scene(), out / "assets" / "workbench.svg": workbench(), out / "assets" / "oss.svg": oss()}
-for slug, title, sub in [("projects", "Projects", "click a card to open it"), ("open-source", "Open source", "upstream work"),
-                         ("skills", "Skills", "what I build with"), ("activity", "Activity", "updated daily"),
-                         ("workbench", "How I work", "Claude Code is my main workbench")]:
+for slug, title, sub in [("projects", "Projects", "click a card to open it"),
+                         ("skills", "Skills", "what I build with"), ("activity", "Activity", "updated daily")]:
     files[out / "assets" / "headings" / f"{slug}.svg"] = heading(title, sub)
 for slug, *data in CARDS:
     files[out / "assets" / "cards" / f"{slug}.svg"] = card(*data)

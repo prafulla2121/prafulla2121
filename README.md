@@ -2,12 +2,11 @@
 
 <p align="center">
 <a href="https://prafulla21.netlify.app"><img src="https://img.shields.io/badge/portfolio-211a2e?style=for-the-badge&logo=netlify&logoColor=FF8A65"/></a>
-<a href="https://linkedin.com/in/prafulla-purohit"><img src="https://img.shields.io/badge/linkedin-211a2e?style=for-the-badge&logo=linkedin&logoColor=5EEAD4"/></a>
+<a href="https://linkedin.com/in/prafulla-purohit"><img src="https://img.shields.io/badge/linkedin-211a2e?style=for-the-badge&logoColor=5EEAD4"/></a>
 <a href="https://x.com/21Prafulla"><img src="https://img.shields.io/badge/x-211a2e?style=for-the-badge&logo=x&logoColor=B9A6FF"/></a>
-<a href="https://github.com/beetbox/beets/pull/7139"><img src="https://img.shields.io/badge/merged%20in-beets-211a2e?style=for-the-badge&logo=github&logoColor=FFD166"/></a>
+<a href="https://github.com/beetbox/beets/pull/7139"><img src="https://img.shields.io/badge/merged%20in-beets-211a2e?style=for-the-badge&labelColor=211a2e&logo=github&logoColor=FFD166"/></a>
 </p>
 
-<img src="./assets/headings/workbench.svg" width="100%" alt="How I work"/>
 <img src="./assets/workbench.svg" width="100%" alt="My Claude Code setup: 140 skills, 69 agents, 19 hooks, 6 plugins, MCP servers. Features go research, plan, my sign-off, build, review, QA."/>
 
 <img src="./assets/headings/projects.svg" width="100%" alt="Projects"/>
@@ -19,7 +18,6 @@
 <a href="https://github.com/prafulla2121/CareerWise-AI"><img src="./assets/cards/careerwise-ai.svg" width="49%" alt="CareerWise AI"/></a>
 <a href="https://github.com/prafulla2121/whatsapp_chat_predict"><img src="./assets/cards/whatsapp-analyzer.svg" width="49%" alt="Chat Analyzer"/></a>
 
-<img src="./assets/headings/open-source.svg" width="100%" alt="Open source"/>
 <a href="https://github.com/beetbox/beets/pull/7139"><img src="./assets/oss.svg" width="100%" alt="Merged beets #7139; triaged MCP Python SDK #3788"/></a>
 
 <img src="./assets/headings/skills.svg" width="100%" alt="Skills"/>
@@ -29,7 +27,7 @@
 <img src="https://img.shields.io/badge/LangChain-211a2e?style=for-the-badge&logo=langchain&logoColor=B9A6FF"/>
 <img src="https://img.shields.io/badge/Claude%20Code-211a2e?style=for-the-badge&logo=anthropic&logoColor=FF8A65"/>
 <img src="https://img.shields.io/badge/Claude%20API-211a2e?style=for-the-badge&logo=anthropic&logoColor=FF8A65"/>
-<img src="https://img.shields.io/badge/OpenAI-211a2e?style=for-the-badge&logo=openai&logoColor=FF8A65"/>
+<img src="https://img.shields.io/badge/OpenAI-211a2e?style=for-the-badge&logoColor=FF8A65"/>
 <img src="https://img.shields.io/badge/MCP-211a2e?style=for-the-badge&logo=modelcontextprotocol&logoColor=5EEAD4"/>
 <img src="https://img.shields.io/badge/Hugging%20Face-211a2e?style=for-the-badge&logo=huggingface&logoColor=5EEAD4"/>
 <img src="https://img.shields.io/badge/FAISS-211a2e?style=for-the-badge&logo=meta&logoColor=5EEAD4"/>
