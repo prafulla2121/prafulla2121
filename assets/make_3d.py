@@ -1,4 +1,4 @@
-"""Makes the v8 3D art: scene.svg (isometric Claude Code workspace) and cards/*.svg. Run: python make_3d.py <out_dir>"""
+"""Makes the profile art: scene.svg (3D Claude Code workspace), dark section panels and cards/*.svg. Run from repo root: python assets/make_3d.py ."""
 import sys
 from pathlib import Path
 from xml.etree import ElementTree
@@ -44,6 +44,8 @@ def defs():
     return f"""<defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{BG2}"/><stop offset="1" stop-color="{BG}"/></linearGradient>
 <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="{CLAUDE}" stop-opacity="0"/><stop offset=".5" stop-color="{CLAUDE}"/><stop offset="1" stop-color="{AGENT}" stop-opacity="0"/></linearGradient>
+<pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
 <radialGradient id="halo"><stop offset="0" stop-color="{CLAUDE}" stop-opacity=".35"/><stop offset="1" stop-color="{CLAUDE}" stop-opacity="0"/></radialGradient>
 </defs>
 <style>
@@ -60,6 +62,70 @@ def defs():
 </style>"""
 
 
+def frame(W, H):
+    """Launch-page panel: dark ground, faint grid, a glowing beam on the top edge."""
+    return [f'<rect width="{W}" height="{H}" rx="18" fill="url(#bg)"/>', f'<rect width="{W}" height="{H}" rx="18" fill="url(#grid)"/>',
+            f'<rect x="120" y="0" width="{W - 240}" height="1.5" fill="url(#beam)"/>',
+            f'<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="18" fill="none" stroke="#fff" stroke-opacity=".08"/>']
+
+
+def svg(W, H, body):
+    return f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">{defs()}{"".join(frame(W, H))}{body}</svg>'
+
+
+def heading(title, sub):
+    return svg(900, 76, f'<text x="32" y="47" style="font:700 26px {SANS};fill:{INK};letter-spacing:-.4px">{escape(title)}</text>'
+                        f'<text x="868" y="46" text-anchor="end" class="body">{escape(sub)}</text>')
+
+
+TREE = [("skills/", "140", "playbooks: code review, TDD, debugging, docs, decks"),
+        ("agents/", "69", "subagents: researcher, architect, reviewer, QA"),
+        ("hooks/", "19", "checks that run on every tool call"),
+        ("plugins/", "6", ""),
+        ("mcp/", "", "GitHub, Notion, Google, browser, my own servers")]
+STEPS = ["research", "plan", "you sign off", "build", "review", "QA"]
+
+
+def workbench():
+    o = ['<rect x="28" y="28" width="520" height="244" rx="12" fill="#0f0c16" stroke="#fff" stroke-opacity=".08"/>']
+    o += [f'<circle cx="{50 + i * 18}" cy="48" r="5" fill="{c}"/>' for i, c in enumerate(["#ff5f57", "#febc2e", "#28c840"])]
+    o.append(f'<text x="288" y="52" text-anchor="middle" class="tag" fill="{MUTED}">~/.claude</text>')
+    for i, (d, n, note) in enumerate(TREE):
+        y = 92 + i * 34
+        branch = "└──" if i == len(TREE) - 1 else "├──"
+        o.append(f'<text x="48" y="{y}" style="font:500 14px {MONO};fill:{MUTED}">{branch} <tspan fill="{CLAUDE}">{d}</tspan></text>'
+                 f'<text x="196" y="{y}" text-anchor="end" style="font:700 14px {MONO};fill:{INK}">{n}</text>'
+                 f'<text x="214" y="{y}" style="font:400 13px {SANS};fill:{MUTED}">{escape(note)}</text>')
+    # the delivery pipeline is a real sequence, so the steps are drawn in order with arrows
+    o.append(f'<text x="580" y="52" style="font:600 15px {SANS};fill:{INK}">How a feature ships</text>')
+    for i, step in enumerate(STEPS):
+        y = 72 + i * 34
+        gate = step == "you sign off"
+        c = OSS if gate else AGENT
+        o.append(f'<rect x="580" y="{y}" width="160" height="26" rx="13" fill="{c}" fill-opacity="{.22 if gate else .12}" stroke="{c}" stroke-opacity=".6"/>'
+                 f'<text x="660" y="{y + 17}" text-anchor="middle" class="tag" fill="{c}">{step}</text>')
+        if i < len(STEPS) - 1:
+            o.append(f'<line x1="660" y1="{y + 26}" x2="660" y2="{y + 34}" stroke="{MUTED}" stroke-opacity=".5" stroke-width="2"/>')
+    o.append(f'<text x="756" y="{72 + 2 * 34 + 17}" class="body" style="font-size:12px">a human approves</text>'
+             f'<text x="756" y="{72 + 2 * 34 + 33}" class="body" style="font-size:12px">the plan first</text>')
+    return svg(900, 300, "".join(o))
+
+
+OSS_ROWS = [("merged", OSS, "beetbox/beets #7139", "tests: album tracks are not singleton import duplicates"),
+            ("triage", MCP, "modelcontextprotocol/python-sdk #3788", "found why servers froze at startup, offered a backport")]
+
+
+def oss():
+    o = []
+    for i, (state, c, where, what) in enumerate(OSS_ROWS):
+        y = 34 + i * 52
+        o.append(f'<rect x="32" y="{y}" width="78" height="26" rx="13" fill="{c}" fill-opacity=".15" stroke="{c}" stroke-opacity=".6"/>'
+                 f'<text x="71" y="{y + 17}" text-anchor="middle" class="tag" fill="{c}">{state}</text>'
+                 f'<text x="128" y="{y + 18}" style="font:600 15px {MONO};fill:{INK}">{escape(where)}</text>'
+                 f'<text x="868" y="{y + 18}" text-anchor="end" class="body" style="font-size:14px">{escape(what)}</text>')
+    return svg(900, 140, "".join(o))
+
+
 def label(iso, x, y, z, text, color, dx=0, dy=-10, anchor="middle"):
     a, b = iso.p(x, y, z)
     return f'<text x="{a + dx:.1f}" y="{b + dy:.1f}" text-anchor="{anchor}" class="tag" fill="{color}">{escape(text)}</text>'
@@ -69,7 +135,7 @@ def scene():
     W, H = 900, 440
     iso = Iso(610, 78, 27)
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">', defs(),
-         f'<rect width="{W}" height="{H}" rx="18" fill="url(#bg)"/>']
+         *frame(W, H)]
     # who
     o += ['<text x="44" y="118" class="name">Prafulla Purohit</text>',
           '<text x="44" y="150" class="role">AI/ML developer at Satva Solutions</text>',
@@ -158,7 +224,11 @@ def card(title, lines, chips, accent, heights):
 
 
 out = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).parent)
-files = {out / "assets" / "scene.svg": scene()}
+files = {out / "assets" / "scene.svg": scene(), out / "assets" / "workbench.svg": workbench(), out / "assets" / "oss.svg": oss()}
+for slug, title, sub in [("projects", "Projects", "click a card to open it"), ("open-source", "Open source", "upstream work"),
+                         ("skills", "Skills", "what I build with"), ("activity", "Activity", "updated daily"),
+                         ("workbench", "How I work", "Claude Code is my main workbench")]:
+    files[out / "assets" / "headings" / f"{slug}.svg"] = heading(title, sub)
 for slug, *data in CARDS:
     files[out / "assets" / "cards" / f"{slug}.svg"] = card(*data)
 for path, svg in files.items():
